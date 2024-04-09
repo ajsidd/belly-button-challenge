@@ -18,6 +18,9 @@ The dashboard is implemented using JavaScript with the D3.js and Plotly librarie
 To use this dashboard, follow these steps:
 
 1. Clone this repository to your local machine:
+  ```bash
+git clone https://github.com/ajsidd/belly-button-challenge.git
+```
 
 ## Dependencies
 This project requires the following libraries:
@@ -29,7 +32,6 @@ Make sure to include these libraries in your project or link them from a CDN.
 ## Deployment
 The Belly Button Biodiversity Dashboard is deployed using GitHub Pages. You can access it [here](https://ajsidd.github.io/belly-button-challenge/).
 
-```bash
-git clone https://github.com/ajsidd/belly-button-challenge.git
+
 
 
