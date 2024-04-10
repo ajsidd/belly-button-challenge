@@ -129,5 +129,59 @@ function fetchData() {
     });
   }
   
-  // Call the fetchData function to initialize the dashboard
+// Function to update gauge chart
+function updateGaugeChart(washingFrequency) {
+  var data = [
+      {
+          domain: { x: [0, 1], y: [0, 1] },
+          value: washingFrequency,
+          title: { text: "Belly Button Washing Frequency<br> Scrubs per Week" },
+          type: "indicator",
+          mode: "gauge+number",
+          gauge: {
+              axis: { range: [0, 9] },
+              steps: [
+                  { range: [0, 1], color: "#f7f7f7" },
+                  { range: [1, 2], color: "#d9f0d3" },
+                  { range: [2, 3], color: "#aed9e0" },
+                  { range: [3, 4], color: "#9fc7ba" },
+                  { range: [4, 5], color: "#76b7d3" },
+                  { range: [5, 6], color: "#5991a8" },
+                  { range: [6, 7], color: "#4d7590" },
+                  { range: [7, 8], color: "#2e5179" },
+                  { range: [8, 9], color: "#0d3045" }
+              ],
+              threshold: {
+                  line: { color: "red", width: 4 },
+                  thickness: 0.75,
+                  value: washingFrequency
+              }
+          }
+      }
+  ];
+
+  var layout = { width: 400, height: 300, margin: { t: 0, b: 0 } };
+  Plotly.newPlot('gauge', data, layout);
+}
+
+// Function to update dashboard elements based on selected sample
+function updateDashboard(sample, data) {
+  // Fetch data for the selected sample
+  var sampleData = data.samples.filter(item => item.id === sample);
+  var metadata = data.metadata.filter(item => item.id === parseInt(sample));
+
+  // Update demographic info
+  updateDemographicInfo(metadata);
+
+  // Update gauge chart
+  updateGaugeChart(metadata[0].wfreq); // Assuming "wfreq" is the key for weekly washing frequency
+
+  // Update bar chart
+  updateBarChart(sampleData);
+
+  // Update bubble chart
+  updateBubbleChart(sampleData);
+}
+
+// Call the fetchData function to initialize the dashboard
   fetchData();
